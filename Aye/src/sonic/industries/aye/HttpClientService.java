@@ -47,11 +47,11 @@ public class HttpClientService extends IntentService {
 
                     SharedPreferences settings = getSharedPreferences(MainActivity.appPrefs, 0);
                    // settings.getInt(MainActivity.Radius, 500);
-                    Utils.uploadGPSdata(lon, lat, settings.getInt(MainActivity.Radius, 500));
+                    Utils.uploadGPSdata(lon, lat, settings.getInt(MainActivity.Radius, 500),"UpdateLocation");
                 	log.info("lat: "+lat+"  lon: "+lon);
 				}
                 } catch (Exception e) {
-                    log.info("Error"+e.getMessage());
+                    log.info("_Error"+e.getMessage());
                 }
             }
         }

@@ -77,6 +77,9 @@ public class MainActivity extends Activity {
         	Initiallize();
         }
         
+
+        Intent i = new Intent(this, HttpClientService.class);
+        startService(i);
         
         
         GoogleCloudMessaging gcm;
@@ -90,12 +93,9 @@ public class MainActivity extends Activity {
              }
         }
         catch(Exception e){
-        	log.info("ERROR" + e.getMessage());
+        	log.info("cERROR" + e.getMessage());
         }
 
-        Intent i = new Intent(this, HttpClientService.class);
-        startService(i);
-        
       	try{
       		log.info("starting loading gps");
             LocationManager locationManager = (LocationManager) 
@@ -245,20 +245,34 @@ public class MainActivity extends Activity {
     	
     }
     
-    private void sendIntentonDistress(String btn){    	
+    private void sendIntentonDistress(String btn){ 
+        log.info("sendIntentonDistress");   	
         SharedPreferences settings = getSharedPreferences(appPrefs, 0);
+        double lat,lon = -1;
         String profile = settings.getString(btn, "Not Found");
         if(profile=="Not Found"){
         	Initiallize();
         }
+                LocationManager locationManager = (LocationManager) 
+                		getSystemService(LOCATION_SERVICE);
+                Criteria criteria = new Criteria();
+                String bestProvider = locationManager.getBestProvider(criteria, false);
+              
+            Location location = locationManager.getLastKnownLocation(bestProvider);
+            lat = location.getLatitude();
+            lon = location.getLongitude();
+            log.info("sendIntentonDistress - before upload");   
+        	  Utils.uploadGPSdata(lon, lat, 0.0,"Panic");
+              log.info("sendIntentonDistress - after upload"); 
+              
     }
     
 
     public void startButtonChangeActivity(View v){
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 
-        dlgAlert.setMessage("wrong password or username");
-        dlgAlert.setTitle("Error Message...");
+        dlgAlert.setMessage("ButtonChangeActivity");
+        dlgAlert.setTitle("Note");
         dlgAlert.setPositiveButton("OK", null);
         dlgAlert.setCancelable(true);
         dlgAlert.create().show();
