@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_category" />
+    
+    <ListView
+        android:layout_width="wrap_content"
+        android:id="@android:id/list"
+        android:layout_height="301dip"
+        android:padding="2dip"
+        android:drawSelectorOnTop="false"
+        android:choiceMode="multipleChoice" >
+</ListView>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:text="@string/listening_radius" />
+
+    <TextView
+        android:layout_height="wrap_content" 
+        android:layout_width="wrap_content"
+        android:id="@+id/radiusBarProgress"
+        />
+    <SeekBar        
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radiusBar" 
+        android:max="5000"
+        android:progress="0"/>
+    
+    <LinearLayout android:layout_height = "wrap_content"
+        		  android:layout_width="fill_parent" 
+        		  android:orientation="horizontal"
+        		  android:layout_marginTop="20dp">
+        <Button
+            android:id="@+id/acceptBtn"
+            android:onClick="accept"
+            android:text="@string/accept_btn"
+            android:layout_height = "fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+             />
+        
+          <Button
+            android:id="@+id/restoreBtn"
+            android:text="@string/resotre_btn"
+            android:onClick="restore"
+            android:layout_height = "fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+             />
+    </LinearLayout>
+</LinearLayout>
